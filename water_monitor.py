@@ -51,7 +51,7 @@ def save_to_seatable(records):
             "lttd": rec.get("lttd", ""),
             "lgtd": rec.get("lgtd", ""),
             "wrz": rec.get("wrz", ""),
-            "z": rec.get("z", "")
+            "z": rec.get("z", ""),
             "grz": rec.get("grz", "")
         }
         # 过滤掉无效字段
