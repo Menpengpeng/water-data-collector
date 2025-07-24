@@ -1,0 +1,30 @@
+name: Daily Water Data Collection
+
+on:
+  schedule:
+    # 每天协调世界时（UTC）上午8点运行
+    # 您可以根据需要调整时间。例如，'0 0 * * *' 表示每天UTC午夜运行。
+    # 关于cron表达式的更多信息：https://docs.github.com/cn/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: '0 8 * * *'
+  workflow_dispatch: # 允许手动触发工作流程
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 在最新的Ubuntu系统上运行
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4 # 检出您的代码
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9' # 指定Python版本，您可以选择其他版本如 '3.10', '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install requests seatable-api
+
+    - name: Run water data script
+      run: |
+        python water_monitor.py
